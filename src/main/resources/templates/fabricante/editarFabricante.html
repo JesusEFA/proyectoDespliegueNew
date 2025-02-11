@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Fabricante</title>
+</head>
+<body>
+    <h1>Editar al fabricante: <span th:text="${fabricante.nombre}"></span></h1>
+    	<form action="#" th:action="@{/fabricante/guardarEdicion}" th:object="${fabricante}" method="post">
+    		<!-- Campo oculto para enviar el ID -->
+	        <input type="hidden" id="idFabricante" name="idFabricante" th:value="${fabricante.idFabricante}">
+    		
+    		<div>
+    			<label for="nombre">Nombre:</label>
+    			<input type="text" id="nuevoNombre" name="nuevoNombre" th:value="${fabricante.nombre}" required>
+    		</div>
+
+	        <div>
+	            <button type="submit">Guardar Cambios</button>
+	        </div>
+	    </form>
+
+    <p><a th:href="@{/fabricante/mostrarTodos}">Volver a la lista de fabricantes</a></p>
+</body>
+</html>

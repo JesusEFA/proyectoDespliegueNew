@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingresar Nombre de los articulos</title>
+</head>
+<body>
+    <h1>Ingresar nombre</h1>
+
+    <form th:action="@{/articulos/mostrarPorNombre}" method="get">
+        <div>
+            <label for="nombre">Ingrese el nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div>
+            <button type="submit">Buscar Articulos</button>
+        </div>
+    </form>
+</body>
+</html>

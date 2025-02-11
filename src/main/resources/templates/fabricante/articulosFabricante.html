@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Artículos del Fabricante</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Botón estilizado */
+        .btn {
+            border-radius: 20px;
+            padding: 8px 15px;
+        }
+
+        .btn-back {
+            background-color: gray;
+            color: white;
+            border: none;
+        }
+
+        .btn-back:hover {
+            background-color: darkgray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Artículos de <span th:text="${fabricante.nombre}"></span></h1>
+        <div class="mb-3">
+            <a th:href="@{/fabricante/mostrarTodos}" class="btn btn-back">Volver a Fabricantes</a>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="articulo : ${articulos}">
+                    <td th:text="${articulo.idArticulo}"></td>
+                    <td th:text="${articulo.nombre}"></td>
+                    <td th:text="${articulo.precio}"></td>
+                </tr>
+                <tr th:if="${articulos.size() == 0}">
+                    <td colspan="4" class="text-center">No hay artículos disponibles para este fabricante.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

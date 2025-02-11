@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Fabricante</title>
+</head>
+<body>
+    <h1>Añadir un nuevo fabricante</h1>
+
+    <form action="#" th:action="@{/fabricante/guardarFabricante}" th:object="${fabricante}" method="post">
+        <label for="Nombre del fabricante">Nombre del fabricante:</label>
+        <input type="text" id="nombre" th:field="*{nombre}" /><br/>
+        
+        <button type="submit">Guardar Fabricante</button>
+    </form>
+</body>
+</html>

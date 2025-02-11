@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Artículos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Botón estilizado */
+        .btn {
+            border-radius: 20px;
+            padding: 8px 15px;
+        }
+
+        .btn-edit {
+            background-color: green;
+            color: white;
+            border: none;
+        }
+
+        .btn-edit:hover {
+            background-color: darkgreen;
+        }
+
+        .btn-delete {
+            background-color: red;
+            color: white;
+            border: none;
+        }
+
+        .btn-delete:hover {
+            background-color: darkred;
+        }
+
+        .btn-add {
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .btn-add:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Lista de Artículos</h1>
+        <div class="mb-3">
+            <a th:href="@{/}" class="btn btn-secondary">Volver al Inicio</a>
+            <a th:href="@{/articulos/nuevoArticulo}" class="btn btn-add">Añadir Artículo</a>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Fabricante</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="articulo : ${articulos}">
+                    <td th:text="${articulo.idArticulo}"></td>
+                    <td th:text="${articulo.nombre}"></td>
+                    <td th:text="${articulo.precio}"></td>
+                    <td th:text="${articulo.fabricante.nombre}"></td>
+                    <td>
+                        <a th:href="@{/articulos/editar/{id}(id=${articulo.idArticulo})}" class="btn btn-edit">Editar</a>
+                        <a th:href="@{/articulos/eliminar/{id}(id=${articulo.idArticulo})}" class="btn btn-delete" onclick="return confirm('¿Seguro que deseas eliminar este artículo?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

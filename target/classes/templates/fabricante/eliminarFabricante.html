@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Fabricante</title>
+</head>
+<body>
+    <h1>Eliminar Fabricante</h1>
+    <p>El fabricante "<span th:text="${fabricante.nombre}"></span>" tiene artículos asociados.</p>
+    
+    <form action="#" th:action="@{/fabricante/eliminarFabricante}" method="post">
+        <input type="hidden" name="fabricanteId" th:value="${fabricante.idFabricante}" />
+
+        <p>¿Qué quieres hacer con los artículos asociados?</p>
+        
+        <div>
+            <input type="radio" id="cambiar" name="opcion" value="cambiar" required />
+            <label for="cambiar">Cambiar los artículos a otro fabricante:</label>
+            <select name="nuevoFabricanteId" th:disabled="${#lists.isEmpty(fabricantes)}">
+                <option value="" disabled selected>Seleccionar fabricante</option>
+                <option th:each="otroFabricante : ${fabricantes}" 
+                        th:value="${otroFabricante.idFabricante}" 
+                        th:text="${otroFabricante.nombre}"
+                        th:if="${otroFabricante.idFabricante != fabricante.idFabricante}">
+                </option>
+            </select>
+        </div>
+
+        <div>
+            <input type="radio" id="borrar" name="opcion" value="borrar" />
+            <label for="borrar">Eliminar los artículos asociados</label>
+        </div>
+
+        <div>
+            <button type="submit">Confirmar</button>
+        </div>
+    </form>
+
+    <a th:href="@{/fabricante/mostrarTodos}">Cancelar</a>
+</body>
+</html>

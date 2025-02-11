@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingresar el precio de los articulos</title>
+</head>
+<body>
+    <h1>Ingresar los precios</h1>
+
+    <form th:action="@{/articulos/mostrarPorPrecio}" method="get">
+        <div>
+            <label for="precioMenor">Ingrese el precio menor:</label>
+            <input type="text" id="precioMenor" name="precioMenor" required>
+        </div>
+        <div>
+            <label for="precioMayor">Ingrese el precio mayor:</label>
+            <input type="text" id="precioMayor" name="precioMayor" required>
+        </div>
+        <div>
+            <button type="submit">Buscar Articulos</button>
+        </div>
+    </form>
+</body>
+</html>

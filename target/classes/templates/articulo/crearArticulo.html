@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${articulo.idArticulo != null ? 'Editar Artículo' : 'Nuevo Artículo'}"></title>
+</head>
+<body>
+    <h1 th:text="${articulo.idArticulo != null ? 'Editar Artículo' : 'Nuevo Artículo'}"></h1>
+    <a th:href="@{/articulos/mostrarArticulos}">Volver a la Lista</a>
+    
+    <form action="#" th:action="@{/articulos/guardarArticulo}" th:object="${articulo}" method="post">  
+        
+        <input type="hidden" id="idArticulo" name="idArticulo" th:value="${articulo.idArticulo}">
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" th:field="*{nombre}" required />
+        </div>
+        <div>
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" th:field="*{precio}" required />
+        </div>
+        <div>
+            <label for="fabricante">Fabricante:</label>
+		    <select id="fabricante" th:field="*{fabricante}" required>
+		        <option th:each="fabricante : ${fabricantes}" 
+		                th:value="${fabricante.idFabricante}" 
+		                th:text="${fabricante.nombre}">
+		        </option>
+		    </select>
+        </div>
+        <div>
+            <button type="submit">Guardar</button>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Fabricantes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Botón estilizado */
+        .btn {
+            border-radius: 20px;
+            padding: 8px 15px;
+        }
+
+        .btn-edit {
+            background-color: green;
+            color: white;
+            border: none;
+        }
+
+        .btn-edit:hover {
+            background-color: darkgreen;
+        }
+
+        .btn-delete {
+            background-color: red;
+            color: white;
+            border: none;
+        }
+
+        .btn-delete:hover {
+            background-color: darkred;
+        }
+
+        .btn-add {
+            background-color: blue;
+            color: white;
+            border: none;
+        }
+
+        .btn-add:hover {
+            background-color: darkblue;
+        }
+
+        .btn-view {
+            background-color: orange;
+            color: white;
+            border: none;
+        }
+
+        .btn-view:hover {
+            background-color: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Lista de Fabricantes</h1>
+        <div class="mb-3">
+            <a th:href="@{/}" class="btn btn-secondary">Volver al Inicio</a>
+            <a th:href="@{/fabricante/nuevoFabricante}" class="btn btn-add">Añadir Fabricante</a>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="fabricante : ${fabricantes}">
+                    <td th:text="${fabricante.idFabricante}"></td>
+                    <td th:text="${fabricante.nombre}"></td>
+                    <td>
+                    	<a th:href="@{/fabricante/articulos/{id}(id=${fabricante.idFabricante})}" class="btn btn-view">Ver Artículos</a>
+                        <a th:href="@{/fabricante/editarFabricante/{id}(id=${fabricante.idFabricante})}" class="btn btn-edit">Editar</a>
+                        <a th:href="@{/fabricante/eliminarFabricante/{id}(id=${fabricante.idFabricante})}" class="btn btn-delete" onclick="return confirm('¿Seguro que deseas eliminar este fabricante?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
